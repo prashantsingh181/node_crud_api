@@ -5,11 +5,12 @@ const {
   updateEmployee,
   deleteEmployee,
 } = require("../../controllers/employeesController");
+const verifyJWT = require("../../middleware/verifyJWT");
 const router = express.Router();
 
 router
   .route("/")
-  .get(getAllEmployees)
+  .get(verifyJWT, getAllEmployees)
   .post(createNewEmployee)
   .put(updateEmployee);
 
